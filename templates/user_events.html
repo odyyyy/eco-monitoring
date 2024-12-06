@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock head %}
+
+{% block title %} Успешно создано {% endblock title %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<h1 style="font-size: 55px; text-align: center; margin-top: 20px; color: #079066; font-weight: bold; ">Размещенные мероприятия</h1>
+
+    <div class="user-events-container">
+        {% for event in events %}
+        <div class="user-event" style="display: flex; flex-direction: column; justify-content: space-between; background-color: #B7E4C7; margin-top: 20px; padding: 20px; border-radius: 10px;">
+            <div class="user-event-info">
+                <p class="user-event-info-title" style="font-size: 25px; font-weight: bold; text-align: left;">{{ event.title }}</p>
+                <p class="user-event-info-description" style="font-size: 20px; text-align: left;">{{ event.description }}</p>
+            </div>
+            <div class="user-event-info" style="margin-top: 40px;">
+                <p class="user-event-info-title" style="font-size: 25px;  text-align: left;">{{ event.datetime|date:"d.m.Y H:i" }}</p>
+                <p class="user-event-info-description" style="font-size: 20px; text-align: left;">{{ event.address }}</p>
+            </div>
+<!--            <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 40px;">-->
+<!--                            <a href="">-->
+<!--                <button class="button" style="padding: 10px;">Изменить</button>-->
+<!--            </a>-->
+<!--            <a href="">-->
+<!--                <button class="button " style="padding: 10px;">Удалить</button>-->
+<!--            </a>-->
+<!--            </div>-->
+        </div>
+        {% endfor %}
+    </div>
+
+    </div>
+{% endblock content %}

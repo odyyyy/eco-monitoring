@@ -1,0 +1,94 @@
+
+h1{
+    animation: 1s show ease;
+    margin-bottom: 20px;
+}
+
+body{
+    background: #F7FFF8;
+}
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    animation: 1s show ease;
+    padding: 80px;
+}
+
+.login-image {
+
+    object-fit: contain;
+    display: flex;
+    width: 1360px;
+    height: 660px;
+    opacity: 0.75;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -35%);
+    display: flex;
+    z-index: -5;
+    margin-bottom: 50px;
+}
+
+label{
+    font-family: 'Manrope', sans-serif;
+    color: #1B4332;
+    font-size: 25px;
+}
+
+input{
+    font-family: 'Manrope', sans-serif;
+    font-size: 25px;
+    border-radius: 20px;
+    border: 3px solid #079066;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    transition: 0.4s ease-in-out;
+    border-color: #B7E4C7;
+    background: #FFFFFF70;
+    box-shadow: 0 0 24px rgb(0 0 0 / 20%);
+    color: #1B4332;
+    outline:none;
+
+    &:hover{
+        background: #B7E4C7;
+
+        }
+
+
+}
+
+button{
+    font-family: 'Manrope', sans-serif;
+    font-size: 25px;
+    border-radius: 20px;
+    color: #1B4332;
+    border: 3px solid #079066;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    transition: 0.4s ease-in-out;
+    background: #B7E4C7;
+    cursor: pointer;
+    &:hover{
+        background: #74C69D;
+    }
+}
+
+.login-container{
+    display: grid;
+    flex-direction: row;
+    justify-content: center;
+}
+.errorlist nonfield{
+
+}

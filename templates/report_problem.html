@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'forms.css' %}">
+<script src="https://api-maps.yandex.ru/2.1/?apikey=0651db2d-983d-4e93-abef-34e3f32c0d96&lang=ru_RU&suggest_apikey=c4bd4c3e-5e84-4980-883f-f3990d8cfca9" type="text/javascript"></script>
+
+{% endblock head %}
+
+{% block title %} Сообщить о проблеме {% endblock title %}
+
+{% block content %}
+<h1 style="font-size: 60px; text-align: center; color: #079066; font-weight: 800;">Сообщить о проблеме</h1>
+<div class="create-event-container" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+
+<form action="{% url 'report_problem' %}" method="post" class="form">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit" class="button -green" style="margin-top: 10px; margin-left: 0px;">Сообщить о проблеме</button>
+</form>
+
+<div id="map"  style="width: 900px; height: 665px; margin-bottom:120px; margin-left: 60px;">
+
+    <p style="text-align: center; font-size: 22px; font-family: 'Manrope', sans-serif; font-style: italic; color: #079066; margin-bottom: 10px;">Выберите место нажав на карту или введите адрес в поле формы</p>
+
+</div>
+</div>
+
+<script>
+    var myMap, placemark;
+
+    function init() {
+        myMap = new ymaps.Map("map", {
+            center: [55.76, 37.64],
+            zoom: 10,
+            controls: ['zoomControl',  'routeButtonControl']
+        });
+
+        var suggestView = new ymaps.SuggestView('id_address');
+        document.getElementById('id_address').addEventListener('change', function () {
+            var address = this.value;
+            geocode(address);
+        });
+
+        myMap.events.add('click', function (e) {
+            var coords = e.get('coords');
+            setPlacemark(coords);
+            reverseGeocode(coords);
+        });
+    }
+
+    function setPlacemark(coords) {
+        if (placemark) {
+            myMap.geoObjects.remove(placemark);
+        }
+
+        placemark = new ymaps.Placemark(coords, {}, {
+            preset: 'islands#icon',
+            iconColor: '#0095b6',
+            balloonContent: 'Вы выбрали это место'
+        });
+
+        myMap.geoObjects.add(placemark);
+        document.getElementById('id_latitude').value = coords[0];
+        document.getElementById('id_longitude').value = coords[1];
+    }
+
+    function reverseGeocode(coords) {
+        ymaps.geocode(coords).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            if (firstGeoObject) {
+                var address = firstGeoObject.getAddressLine();
+                document.getElementById('id_address').value = address;
+                placemark.properties.set('balloonContent', address);
+            }
+        });
+    }
+
+    function geocode(address) {
+        ymaps.geocode(address).then(function (res) {
+            var firstGeoObject = res.geoObjects.get(0);
+            if (firstGeoObject) {
+                var coords = firstGeoObject.geometry.getCoordinates();
+                myMap.setCenter(coords, 16);
+                setPlacemark(coords);
+                reverseGeocode(coords);
+            }
+        });
+    }
+
+    ymaps.ready(init);
+</script>
+
+
+{% endblock content %}

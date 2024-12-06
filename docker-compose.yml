@@ -1,0 +1,49 @@
+services:
+  app:
+    build: .
+    restart: always
+    command: >
+      sh -c "python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A config worker -l INFO
+    volumes:
+      - .:/app
+    container_name: celery
+    environment:
+        - HOME=/app
+    user: "1000:1000"
+    env_file:
+      - .env
+    depends_on:
+      - app
+      - redis
+
+  celery-beat:
+    container_name: celery-beat
+    build:
+      context: .
+    command: celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/app
+    depends_on:
+      - app
+      - redis

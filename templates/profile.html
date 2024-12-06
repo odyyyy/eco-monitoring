@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'profile.css' %}">
+
+{% endblock head %}
+
+{% block title %} Профиль {% endblock title %}
+
+{% block content %}
+<div class="profile-user-info-container">
+    <div class="profile-user-avatar-container">
+    {% if user.image %}
+    <img src="{% static user.image %}"  class='profile-user-avatar' alt="">
+    {% else %}
+    <img src="{% static 'default_avatar.jpg' %}" class='profile-user-avatar' alt="">
+        </div>
+    {% endif %}
+    <p class="profile-username" style="font-size: 30px; font-family: 'Manrope', sans-serif">{{ user.username }}</p>
+</div>
+
+<div class="profile-options-container">
+
+    <div class="notification-option option">
+        {% if not user.notification_options.all %}
+        <a href="#choose_notification_option" style="margin-right: 80px;">
+            <button class="button -green">Подписка на уведомления</button>
+        </a>
+        {% else %}
+        <a href="" style="margin-right: 80px;">
+            <form action="{% url 'profile' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="delete_notification_option" value="delete_notification_option" hidden="hidden">
+                <button class="button --red" type="submit" style="background: #d23d3d;">Отказать от уведомлений</button>
+            </form>
+        </a>
+        {% endif %}
+    </div>
+    <div class="event-option option" style="display: flex; flex-direction: column; align-items: center; ">
+        <a href="{% url 'create_event' %}" >
+            <button class="button -green">Создать мероприятие</button>
+        </a>
+        <a href="{% url 'user-events' %}"  style="margin-top: 20px;">
+            <button class="button -green">Мои мероприятия</button>
+        </a>
+
+    </div>
+    <div class="problem-option option">
+        <a href="{% url 'report_problem' %}" >
+            <button class="button -green">Сообщить о проблеме</button>
+        </a>
+    </div>
+</div>
+
+<!-- PopUp с выбором о чем сообщать пользователя при подписки на нотификацию -->
+<a href="#x" class="overlay" id="choose_notification_option"></a>
+<div class="popup">
+
+    <form method="post" action="{% url 'profile' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button" style="padding: 10px;" type="submit">Подписаться</button>
+    </form>
+
+    <a class="close" title="Закрыть" href="#close"></a>
+</div>
+
+{% endblock content %}

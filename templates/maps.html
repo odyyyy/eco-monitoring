@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load djeymtags %}
+{% load i18n %}
+{% block head %}
+<!-- START VENDORS CSS -->
+<!-- Roboto Font:
+      Usage (css):
+        font-size: 16px;
+        font-family: Roboto, sans-serif !important;
+        font-weight: 100|300|400|500|700|900;
+        font-style: italic!important; -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+<!-- Material Design Icons:
+      url: https://materialdesignicons.com/
+      Usage (html):
+        <span class="mdi mdi-name"></span>
+        Size: mdi-18px|mdi-24px|mdi-36px|mdi-48px or font-size: 16px;
+        Rotate: mdi-rotate-45|mdi-rotate-90|mdi-rotate-135|mdi-rotate-180|mdi-rotate-225|mdi-rotate-270|mdi-rotate-315
+        Flip: mdi-flip-h|mdi-flip-v
+        Color: mdi-light|mdi-light mdi-inactive|mdi-dark|mdi-dark mdi-inactive or color: #212121; -->
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css" rel="stylesheet">
+<!-- END VENDORS CSS -->
+<link rel="stylesheet" href="{% static 'maps.css' %}">
+{% endblock head %}
+
+{% block title %}Экологическая карта{% endblock title %}
+
+{% block content %}
+<h1><strong>Экологическая карта</strong></h1>
+
+
+<div class="ecology-info-container">
+    <div class="air-info">
+        <p class="air-info-title info-title">Погода</p>
+        <p class="info-title info-status">{{ air_temperature }} °</p>
+        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; ">
+            <p class="air-info-value info-value" style="font-size: 40px; ">{% translate weather_description|capfirst %} </p>
+        </div>
+
+    </div>
+        <div class="air-info">
+            <p class="air-info-title info-title">Качество воздуха</p>
+            <p class="info-title info-status" style="{{ air_style }}">{{ quality_status }}</p>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                <p class="air-info-value info-value" style="{{ air_style }}">{{ average_aqi }} </p>
+                <span>AQI</span>
+            </div>
+
+        </div>
+        <div class="air-info">
+            <p class="air-info-title info-title">Радиационный фон</p>
+            <p class="info-title info-status" style="{{ radiation_style }}">{{ radiation_status }}</p>
+            <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                <p class="air-info-value info-value" style="{{ radiation_style }}">{{ average_radiation }}</p><span>мкЗв/ч</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- START MAP -->
+
+<div id="djeym-app" class="djeym-map"></div>
+<!-- END MAP -->
+
+<!-- START VENDORS JS -->
+<script type="text/javascript" src="{% static 'djeym/js/jquery.min.js' %}"></script>
+<script src="{% static 'djeym/js/jquery-regex.min.js' %}"></script>
+{% djeym_yandex_map slug='ekologicheskaia-karta' lang=request.LANGUAGE_CODE %}
+<!-- END VENDORS JS -->
+
+{% endblock content %}

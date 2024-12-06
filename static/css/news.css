@@ -1,0 +1,100 @@
+
+h1{
+    text-align: center;
+    color: #079066;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    font-size: 60px;
+    font-family: 'Manrope', sans-serif;
+    animation: 1s show ease;
+}
+
+.news-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    transition: 0.3s ease-in-out;
+    padding: 30px;
+    animation: 1s show ease;
+
+}
+
+.news-item{
+    cursor: pointer;
+    background-color: #B7E4C7;
+    margin-bottom: 90px;
+    padding: 20px;
+    transition: 0.4s  ease-in-out;
+    border-radius: 10px;
+
+            & :hover{
+        transform: scale(1.01);
+        transition: 0.4s  ease-in-out;
+    }
+
+}
+
+
+
+.news-item-title{
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Manrope', sans-serif;
+}
+
+.news-item-date{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Manrope', sans-serif;
+
+}
+
+.news-item-description{
+    font-size: 22px;
+    font-weight: 400;
+    font-family: 'Manrope', sans-serif;
+    margin-left: 50px;
+
+}
+
+.news-image{
+    width: 450px;
+    height: 350px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+.image-with-description{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.news-item-link {
+    text-align: right;
+}
+.news-link{
+    display: inline-block;
+    text-decoration: none;
+    color: #079066;
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 20px;
+    font-family: 'Manrope', sans-serif;
+    transition: 0.4s ease-in-out;
+    &:hover{
+        color: black;
+        background: #74C69D;
+
+    }
+}
+
+
+@keyframes show {
+  from { opacity: 0; margin-left: -8px; }
+  to { opacity: 1; }
+}

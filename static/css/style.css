@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+
+* {
+	padding: 0px;
+	margin: 0px;
+	border: none;
+}
+
+h1{
+
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    }
+
+
+body{
+    background: #F7FFF8;
+}
+
+
+:root {
+  --color-smoke: #e4e4e4;
+  --color-grass: #3dd28d;
+  --color-snow: #FFFFFF;
+  --borderRadius: 36px;
+  --moveH1ButtonLeft: 50px;
+}
+
+.button {
+
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: all 150ms linear;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+    color: var(--color-snow);
+    background: var(--color-grass);
+  color: #fff;
+  border: 0 none;
+  border-radius: var(--borderRadius);
+padding: 20px 20px;
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.3;
+
+
+  box-shadow: 2px 5px 10px var(--color-smoke);
+
+  &:hover {
+    transition: all 150ms linear;
+
+    opacity: .85;
+  }
+
+  &:active {
+    transition: all 150ms linear;
+    opacity: .75;
+  }
+
+  &:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+  }
+}
+a {
+  text-decoration: none !important;
+  }
+
+
+
+@keyframes show {
+  from { opacity: 0; margin-left: -8px; }
+  to { opacity: 1; }
+}

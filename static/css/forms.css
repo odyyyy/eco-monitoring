@@ -1,0 +1,42 @@
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    animation: 1s show ease;
+    padding: 25px;
+}
+
+
+label{
+    font-family: 'Manrope', sans-serif;
+    color: #1B4332;
+    font-size: 25px;
+}
+
+input, textarea{
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    border-radius: 20px;
+    border: 3px solid #079066;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    transition: 0.4s ease-in-out;
+    border-color: #B7E4C7;
+    background: #FFFFFF70;
+    box-shadow: 0 0 24px rgb(0 0 0 / 20%);
+    color: #1B4332;
+    outline:none;
+
+    &:hover{
+        background: #B7E4C7;
+
+        }
+
+
+}
