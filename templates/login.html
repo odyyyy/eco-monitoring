@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Вход в аккаунт {% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href=" {% static 'login.css' %}">
+<link rel="stylesheet" href=" {% static 'style.css' %}">
+{% endblock head %}
+
+{% block content %}
+<h1 style="font-size: 60px; text-align: center; margin-top: 30px; color: #079066; font-weight: bold; ">
+    Вход в аккаунт
+</h1>
+
+<div class="login-container">
+    <img src="{% static 'earth-login2.png' %}" class="login-image" alt="">
+    <form  method="post" class="auth-form" action="{% url 'login' %}" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="button -green">Войти</button>
+    </form>
+
+</div>
+
+
+<p style="text-align: center; margin-top: 10px; font-size: 30px; font-family: 'Manrope', sans-serif; margin-bottom: 60px">
+    Нет аккаунта?
+    <a href="{% url 'signup' %}" style="text-decoration: none; color: #1B4332;; ">Зарегистрируйтесь</a>
+</p>
+
+{% endblock content %}
+

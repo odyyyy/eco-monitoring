@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'news.css' %}">
+{% endblock head %}
+
+{% block title %}Новость{% endblock title %}
+
+{% block content %}
+<h1 style="text-align: center; font-size: 45px;"><strong>{{ news.title }}</strong></h1>
+<p style="margin-top: 50px; font-size: 35px; font-family: 'Manrope', sans-serif; text-align: center">{{ news.date }}</p>
+
+<div class="news-container">
+    {{ news.full_text|safe }}
+</div>
+{% endblock content %}

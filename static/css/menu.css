@@ -1,0 +1,56 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  font-family: Raleway;
+  background-color: #F7FFF8;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+ /*
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100; */
+}
+
+
+/*
+.login{
+    display: flex;
+    align-self: end;
+    justify-self: end;
+}
+*/
+
+
+.link-1 {
+  transition: 0.3s ease;
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  border-bottom: 2px solid transparent;
+  padding: 20px 0;
+  margin: 0 20px;
+}
+.link-1:hover {
+  border-bottom: 2px solid #04bc6b;
+  padding: 6px 0;
+  transition: 0.2s  ease-in-out;
+  color: #04bc6b;
+}
+
+.user-auth-info {
+    display: flex;
+    flex-direction: row;
+ position: absolute;
+ right: 20px;
+ top: 25px;
+}

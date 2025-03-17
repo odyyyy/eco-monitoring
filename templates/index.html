@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+{% endblock head %}
+
+{% block title %}Экологический контроль{% endblock title %}
+
+{% block content %}
+<div class="start-screen-container">
+    <div class="left-side">
+        <h1 class="hidden">Система мониторинга <br>экологической обстановки<br> в городе
+            <strong><span>Москве</span></strong></h1>
+        <a href="{% url 'maps' %}">
+            <button class="button -green" style="margin-left: 50px; margin-top: 30px;" aria-label="Proceed with that">Перейти на карту</button>
+        </a>
+    </div>
+
+    <div class="right-side">
+        <img class="city-img" src="{% static 'green.webp' %}" alt="urbanEcology" width="100%" height="100%">
+    </div>
+</div>
+<section class="about-map">
+    <div class="about-map-info-container">
+
+        <div class="air-pollution info-container">
+            <img src="{% static 'air.svg' %}" class='info-icon air' style="color: white;" alt="">
+            <p>Узнай о качестве <br> <span style="color: #2A98FF">воздуха в городе</span></p>
+        </div>
+
+        <div class="dangerous-objects info-container">
+            <img src="{% static 'factory.svg' %}" class='info-icon dangerous' style=" opacity: 0.85;" alt="">
+            <p>Узнай об опасных объектах <br>  <span style="color: #C70000">загряжняющих среду</span></p>
+        </div>
+
+        <div class="eco-events info-container">
+            <img src="{% static 'eco.svg' %}" class='info-icon events' alt="">
+            <p>Узнай о проводящихся <br> <span style="color: #57D956">экологических меропритиях</span> </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="about-notifications">
+    <div class="notification-info-container info-container">
+
+        <img src="{% static 'notification.png' %}" class='info-icon-notification' alt="">
+        <div class="right-side-notificatin-info">
+        <p style="font-size: 60px">Подпишись на уведомления <br> чтобы быть всегда в курсе <br> <span><strong>экологической обстановки</strong></span><br>
+        </p>
+                    <a href="{% url 'profile' %}" style="margin-top: 30px;">
+            <button class="button -green"   >Подписаться на уведомления</button>
+        </a>
+            </div>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const infoContainers = document.querySelectorAll('.info-container');
+
+        function checkVisibility() {
+            const triggerBottom = window.innerHeight / 5 * 4;
+
+            infoContainers.forEach(container => {
+                const boxTop = container.getBoundingClientRect().top;
+
+                if (boxTop < triggerBottom) {
+                    container.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility();
+    });
+</script>
+
+{% endblock content %}

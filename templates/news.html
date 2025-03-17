@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'news.css' %}">
+{% endblock head %}
+
+{% block title %}Новости{% endblock title %}
+
+{% block content %}
+<h1><strong>Новости</strong></h1>
+
+{% if news.error %}
+<p style="margin-top: 50px; font-size: 35px; font-family: 'Manrope', sans-serif; text-align: center">{{ news.error }}</p>
+{% else %}
+<div class="news-container">
+    {% for item in news %}
+    <a href="{{ item.link }}"   style="text-decoration: none; color: black" target="_blank">
+    <div class="news-item">
+        <div class="news-item-date">
+            <p>{{ item.date}}</p>
+        </div>
+        <div class="news-item-title">
+            <p>{{ item.title }}</p>
+        </div>
+        <div class="image-with-description">
+        <div class="news-item-image">
+            {% if item.image %}
+            <img src="{{ item.image }}" alt="image" class="news-image">
+            {% else %}
+            <img src="{% static 'green-city.png' %}" class="news-image" alt="image">
+            {% endif %}
+        </div>
+        <div class="news-item-description">
+            <p>{{ item.description }}</p>
+        </div>
+            </div>
+        <div class="news-item-link">
+            <a href="{{ item.link }}" class="news-link" target="_blank">Подробнее</a>
+        </div>
+    </div>
+        </a>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

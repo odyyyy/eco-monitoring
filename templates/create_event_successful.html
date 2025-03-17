@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{% endblock head %}
+
+{% block title %} Успешно создано {% endblock title %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<h1 style="font-size: 55px; text-align: center; margin-top: 20px; color: #079066; font-weight: bold; ">Мероприятие успешно создано!</h1>
+<p style="font-size: 25px; text-align: center; margin-top: 20px; font-family: 'Manrope', sans-serif">Оно было отмечено на экологической карте</p>
+
+<a href="{% url 'maps' %}">
+    <button class="button -green" style="margin-left: 0;">Перейти на карту</button>
+</a>
+    </div>
+{% endblock content %}
